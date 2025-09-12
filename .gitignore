@@ -1,0 +1,371 @@
+# ===========================
+# MUSIC GENERATOR MONOREPO
+# ===========================
+
+# ===========================
+# GENERAL FILES
+# ===========================
+
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.tmp
+*.temp
+*~
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ===========================
+# BACKEND - PYTHON/MODAL
+# ===========================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.conda/
+*.conda
+
+# PyTorch & ML Models
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+checkpoints/
+models/
+weights/
+
+# HuggingFace Cache
+.cache/
+transformers_cache/
+diffusers_cache/
+
+# Generated Audio Files
+*.wav
+*.mp3
+*.flac
+*.aac
+*.ogg
+generated_music.*
+generated_audio.*
+/backend/generated_*
+
+# Generated Images
+*.png
+*.jpg
+*.jpeg
+*.gif
+cover_art.*
+thumbnail.*
+/backend/generated_images/
+
+# Temporary Output Directories
+/backend/tmp/
+/backend/temp/
+/backend/outputs/
+/tmp/outputs/
+
+# Modal Specific
+.modal_token
+.modal/
+modal_cache/
+
+# AI/ML Related
+wandb/
+mlruns/
+.neptune/
+tensorboard_logs/
+experiments/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# Testing & Coverage
+.coverage
+.pytest_cache/
+.tox/
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.test
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# ===========================
+# FRONTEND - NEXT.JS
+# ===========================
+
+# Dependencies
+node_modules/
+.pnpm/
+.yarn/
+
+# Production Build
+.next/
+out/
+build/
+dist/
+
+# Next.js Cache
+.next/cache/
+
+# Static Files
+/frontend/public/uploads/
+/frontend/public/generated/
+/frontend/public/temp/
+
+# PWA
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# Sentry
+.sentryclirc
+sentry.properties
+
+# Vercel
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Turbo
+.turbo
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint
+.eslintcache
+
+# Stylelint
+.stylelintcache
+
+# ===========================
+# PACKAGE MANAGERS
+# ===========================
+
+# npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+
+# Yarn
+yarn-error.log
+.yarn-integrity
+.yarn/
+.pnp.*
+
+# pnpm
+.pnpm-debug.log*
+pnpm-lock.yaml
+.pnpm/
+
+# Lerna
+lerna-debug.log*
+
+# ===========================
+# CLOUD & DEPLOYMENT
+# ===========================
+
+# AWS
+.aws/
+
+# Google Cloud
+.gcloud/
+service-account*.json
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+*.tfvars
+
+# Docker
+Dockerfile.local
+docker-compose.override.yml
+.dockerignore.local
+
+# ===========================
+# SECRETS & CONFIGURATION
+# ===========================
+
+# API Keys & Secrets
+secrets/
+*.pem
+*.key
+*.crt
+config/production.json
+config/staging.json
+.secrets
+api_keys.json
+
+# Modal Secrets
+modal_secrets.json
+
+# Environment Configuration
+.env.production
+.env.staging
+.env.development
+.env.*.local
+
+# ===========================
+# TESTING & QA
+# ===========================
+
+# Test Results
+coverage/
+test-results/
+playwright-report/
+test-results.xml
+coverage.xml
+
+# Visual Regression
+screenshots/
+visual-diffs/
+
+# ===========================
+# MEDIA & ASSETS
+# ===========================
+
+# Large Media Files (use Git LFS instead)
+*.mov
+*.mp4
+*.avi
+*.mkv
+*.wmv
+*.flv
+
+# Audio Files (except small samples)
+*.wav
+*.mp3
+*.flac
+*.aac
+*.ogg
+*.m4a
+
+# Raw Audio Processing
+audio_cache/
+processed_audio/
+temp_audio/
+
+# Generated Assets
+generated/
+uploads/
+temp_files/
+
+# ===========================
+# DOCUMENTATION
+# ===========================
+
+# Generated Documentation
+docs/build/
+docs/_build/
+site/
+
+# ===========================
+# MONOREPO SPECIFIC
+# ===========================
+
+# Shared Cache
+.cache/
+.temp/
+.tmp/
+
+# Build Artifacts
+**/build/
+**/dist/
+**/out/
+
+# Shared Generated Files
+**/generated/
+**/temp/
+**/tmp/
+
+# ===========================
+# CUSTOM PROJECT FILES
+# ===========================
+
+# ACE-Step Model (downloaded dynamically)
+ACE-Step/
+
+# Generated Music Samples
+sample_outputs/
+demo_tracks/
+test_outputs/
+
+# User Uploads (if any)
+user_content/
+uploads/
+
+# Analytics & Metrics
+analytics/
+metrics/
+stats/

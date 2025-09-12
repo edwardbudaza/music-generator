@@ -1,0 +1,7 @@
+modal
+boto3
+requests
+pydantic 
+fastapi 
+transformers
+diffusers
