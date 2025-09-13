@@ -56,8 +56,8 @@ A production-ready AI music generation service built with Modal, featuring advan
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd music-generator
+   git clone https://github.com/edwardbudaza/music-generator.git
+   cd music-generator/backend
    ```
 
 2. **Install dependencies**
