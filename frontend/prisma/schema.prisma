@@ -1,0 +1,147 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String    @id
+  name                  String
+  email                 String
+  emailVerified         Boolean
+  image                 String?
+  // Add billing-related fields
+  subscriptionStatus    String    @default("free") // free, premium, pro
+  polarCustomerId       String?   @unique
+  polarSubscriptionId   String?   @unique
+  createdAt             DateTime
+  updatedAt             DateTime
+  
+  // Relations
+  sessions              Session[]
+  accounts              Account[]
+  credits               Int       @default(3) // Changed from 100 to 3 for free trial
+  likes                 Like[]
+  songs                 Song[]
+  creditTransactions    CreditTransaction[] // New relation
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Song {
+  id                  String    @id @default(cuid())
+  title               String?   // Made optional since we auto-generate from type
+  // Updated field names to match backend response
+  audioR2Key          String?   // Changed from r2Key
+  coverImageR2Key     String?   // Changed from thumbnailR2Key  
+  status              String    @default("queued") // queued, processing, completed, failed, no_credits
+  instrumental        Boolean   @default(false)
+  prompt              String?
+  lyrics              String?
+  fullDescribedSong   String?
+  describedLyrics     String?
+  // Add missing generation type field
+  generationType      String?   // from_description, with_custom_lyrics, with_described_lyrics
+  guidanceScale       Float?
+  inferStep           Float?
+  audioDuration       Float?
+  seed                Float?
+  published           Boolean   @default(false)
+  listenCount         Int       @default(0)
+  
+  // Relations
+  likes               Like[]
+  categories          Category[]
+  creditTransactions  CreditTransaction[] // New relation
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String
+
+  @@index([audioR2Key]) // Updated index name
+}
+
+// New model for credit tracking
+model CreditTransaction {
+  id          String   @id @default(cuid())
+  userId      String
+  songId      String?  // Optional - null for purchases, set for usage
+  amount      Int      // positive for added, negative for used
+  type        String   // purchase, usage, bonus, subscription
+  description String
+  createdAt   DateTime @default(now())
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  song        Song?    @relation(fields: [songId], references: [id], onDelete: SetNull)
+
+  @@map("credit_transactions")
+}
+
+// Existing models - no changes needed
+model Like {
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  song   Song   @relation(fields: [songId], references: [id], onDelete: Cascade)
+  songId String
+
+  @@id([userId, songId])
+}
+
+model Category {
+  id    String @id @default(cuid())
+  name  String @unique
+  songs Song[]
+}
+
+model Session {
+  id         String   @id
+  expiresAt  DateTime
+  token      String
+  createdAt  DateTime
+  updatedAt  DateTime
+  ipAddress  String?
+  userAgent  String?
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                     String    @id
+  accountId              String
+  providerId             String
+  userId                 String
+  user                   User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken            String?
+  refreshToken           String?
+  idToken                String?
+  accessTokenExpiresAt   DateTime?
+  refreshTokenExpiresAt  DateTime?
+  scope                  String?
+  password               String?
+  createdAt              DateTime
+  updatedAt              DateTime
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
+}

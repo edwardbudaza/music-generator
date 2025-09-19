@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16-alpine   # lightweight version
+    container_name: dev_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: music-generator
+    volumes:
+      - db_data:/var/lib/postgresql/data   # persistent storage
+    ports:
+      - "5432:5432"   # expose on localhost
+
+volumes:
+  db_data: {}
